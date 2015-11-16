@@ -1,13 +1,9 @@
-//-------------------------------------------------------------------------
-//      lab7_usb.sv                                                      --
-//      Christine Chen                                                   --
-//      Fall 2014                                                        --
-//                                                                       --
-//      Fall 2014 Distribution                                           --
-//                                                                       --
-//      For use with ECE 385 Lab 7                                       --
-//      UIUC ECE Department                                              --
-//-------------------------------------------------------------------------
+/*
+ * ECE 385 Final Project
+ * Zefan Xu
+ * Top level module of Project Flappy Bird.
+ * 
+ */
 
 
 module  flappy_bird 		( input         CLOCK_50,
@@ -23,7 +19,7 @@ module  flappy_bird 		( input         CLOCK_50,
 							                VGA_SYNC_N,			//VGA Sync signal
 												 VGA_BLANK_N,			//VGA Blank signal
 												 VGA_VS,					//VGA virtical sync signal	
-												 VGA_HS,					//VGA horizontal sync signal
+												 VGA_HS/*,					//VGA horizontal sync signal
 							  // CY7C67200 Interface
 							  inout [15:0]  OTG_DATA,						//	CY7C67200 Data bus 16 Bits
 							  output [1:0]  OTG_ADDR,						//	CY7C67200 Address 2 Bits
@@ -42,7 +38,7 @@ module  flappy_bird 		( input         CLOCK_50,
 							  output			 DRAM_CKE,				// SDRAM Clock Enable
 							  output			 DRAM_WE_N,				// SDRAM Write Enable
 							  output			 DRAM_CS_N,				// SDRAM Chip Select
-							  output			 DRAM_CLK				// SDRAM Clock
+							  output			 DRAM_CLK				// SDRAM Clock*/
 											);
     
     logic Reset_h, vssig, Clk;
@@ -53,16 +49,16 @@ module  flappy_bird 		( input         CLOCK_50,
     assign {Reset_h}=~ (KEY[0]);  // The push buttons are active low
 	
 	 
-	 wire [1:0] hpi_addr;
+/*	 wire [1:0] hpi_addr;
 	 wire [15:0] hpi_data_in, hpi_data_out;
-	 wire hpi_r, hpi_w,hpi_cs;
+	 wire hpi_r, hpi_w,hpi_cs;*/
 	 
 	 wire [9:0] drawx, drawy, ballx, bally, balls;
 	 
 	 wire frame_clk;
 	 wire w;
 	 
-	 hpi_io_intf hpi_io_inst(   .from_sw_address(hpi_addr),
+/*	 hpi_io_intf hpi_io_inst(   .from_sw_address(hpi_addr),
 										 .from_sw_data_in(hpi_data_in),
 										 .from_sw_data_out(hpi_data_out),
 										 .from_sw_r(hpi_r),
@@ -99,7 +95,7 @@ module  flappy_bird 		( input         CLOCK_50,
 										 .otg_hpi_data_out_port(hpi_data_out),
 										 .otg_hpi_cs_export(hpi_cs),
 										 .otg_hpi_r_export(hpi_r),
-										 .otg_hpi_w_export(hpi_w));
+										 .otg_hpi_w_export(hpi_w));*/
 	
 	//Fill in the connections for the rest of the modules 
     vga_controller vgasync_instance(.Clk(CLOCK_50),
