@@ -12,11 +12,11 @@
 //    University of Illinois ECE Department                              --
 //-------------------------------------------------------------------------
 
-
-module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
+    
+module  color_mapper ( input        [9:0] PipePositionX, PipePositionY, DrawX, DrawY, Ball_size,
                        output logic [7:0]  Red, Green, Blue );
     
-    logic ball_on;
+    logic pipe_green_on;
 	 
  /* Old Ball: Generated square box by checking if the current pixel is within a square of length
     2*Ball_Size, centered at (BallX, BallY).  Note that this requires unsigned comparisons.
@@ -31,25 +31,25 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
      of the 12 available multipliers on the chip!  Since the multiplicants are required to be signed,
 	  we have to first cast them from logic to int (signed by default) before they are multiplied). */
 	  
-    int DistX, DistY, Size;
-	 assign DistX = DrawX - BallX;
-    assign DistY = DrawY - BallY;
-    assign Size = Ball_size;
-	  
+    
+
+	PipesGreenBodyTop <= (DrawX>=PipePositionX+12) && (DrawX<=PipePositionX+78) && (DrawY>=0) && (DrawY<=PipePositionY);
+    PipesGreenTop <= (CounterX>=PipePositionX+3) && (CounterX<=PipePositionX+87) && (CounterY>=PipePositionY+3) && (CounterY<=PipePositionY+30);
+
     always_comb
-    begin:Ball_on_proc
-        if ( ( DistX*DistX + DistY*DistY) <= (Size * Size) ) 
-            ball_on = 1'b1;
+    begin:pipe_green_on_proc
+        if ( PipesGreenTop || PipesGreenBodyTop ) 
+            pipe_green_on = 1'b1;
         else 
-            ball_on = 1'b0;
+            pipe_green_on = 1'b0;
      end 
        
     always_comb
     begin:RGB_Display
-        if ((ball_on == 1'b1)) 
+        if ((pipe_green_on == 1'b1)) 
         begin 
-            Red = 8'hff;
-            Green = 8'h00;
+            Red = 8'h00;
+            Green = 8'hff;
             Blue = 8'h00;
         end       
         else 
