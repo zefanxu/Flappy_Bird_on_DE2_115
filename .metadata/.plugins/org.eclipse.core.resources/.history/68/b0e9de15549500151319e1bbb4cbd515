@@ -1,0 +1,73 @@
+/*
+ * main.c
+ *
+ *  Created on: Nov 26, 2015
+ *      Author: Zefan Xu
+ */
+#include <stdio.h>
+ #define true 1
+ #define false 0
+
+	volatile unsigned int * birdy = (unsigned int*) 0x20;
+	volatile unsigned int * birdx = (unsigned int*) 0x30;
+	volatile unsigned int * pipe_x = (unsigned int*) 0x40;
+	volatile unsigned int * pipe3 = (unsigned int*) 0x70;
+	volatile unsigned int * pipe2 = (unsigned int*) 0x60;
+	volatile unsigned int * pipe1 = (unsigned int*) 0x50;
+	volatile unsigned int * pipe4 = (unsigned int*) 0x90;
+	volatile unsigned int * pipe5 = (unsigned int*) 0x80;
+	volatile unsigned int * KEY1 = (unsigned int*) 0xA0;
+
+int randomHeight(){
+	int out = 140 + rand() % 150;
+	return out;
+}
+
+int main(){
+	int y_init = 320;
+	*birdx = 0;
+	*birdy = y_init;
+	double timeCount = 0;
+	double yPosition = y_init;
+
+	*pipe_x = 640;
+	*pipe1 = 140;
+	*pipe2 = 170;
+	*pipe3 = 200;
+	*pipe4 = 230;
+	*pipe5 = 270;
+	double pipeXposition = *pipe_x;
+	int jump = false;
+
+	int gameover = false;
+
+	while (1){
+		//update bird position /////////////////////////////////////////////////////////////////////////
+		if (KEY1 == 0) jump = true;
+		if (jump){
+				timeCount += 0.02;
+				yPosition = 0.5 * (-10) * timeCount * timeCount + timeCount * 40 + y_init;
+		}
+		if (yPosition < 100) {
+			yPosition = 100;
+			jump = false;
+			gameover = true;
+		}
+		*birdy = 480 - yPosition;
+		//update pipe x position ///////////////////////////////////////////////////////////////////////
+		pipeXposition -= 0.05;
+
+		if (pipeXposition <= 100){
+			printf("before swap: %d, %d, %d, %d, %d \n", *pipe5, *pipe2, *pipe1, *pipe3, *pipe4);
+			*pipe5 = *pipe3;
+			*pipe2 = *pipe1;
+			pipeXposition = 640;
+			*pipe1 = *pipe4;
+			*pipe3 = randomHeight();
+			*pipe4 = randomHeight();
+			printf("after swap: %d, %d, %d, %d, %d \n", *pipe5, *pipe2, *pipe1, *pipe3, *pipe4);
+		}
+		*pipe_x = pipeXposition;
+	}
+
+}

@@ -1,0 +1,23 @@
+/*
+ * main.c
+ *
+ *  Created on: Nov 26, 2015
+ *      Author: Zefan Xu
+ */
+#include <stdio.h>
+
+	volatile unsigned int * birdy = (unsigned int*) 0x20;
+	volatile unsigned int * birdx = (unsigned int*) 0x30;
+
+int main(){
+	*birdx = 0;
+	*birdy = 0;
+	double timeCount = 0;
+	double yPosition = 0;
+	while (1){
+		timeCount += 0.01;
+		yPosition = 0.5 * (-10) * timeCount * timeCount + timeCount * 80;
+		if (yPosition <= 0) timeCount = 0;
+		*birdy = 480 - yPosition;
+	}
+}

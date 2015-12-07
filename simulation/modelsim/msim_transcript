@@ -1,0 +1,44 @@
+# Reading C:/altera/15.0/modelsim_ase/tcl/vsim/pref.tcl
+# do Flappy_Bird_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim PE vmap 10.3d Lib Mapping Utility 2014.10 Oct  7 2014
+# vmap -modelsim_quiet work rtl_work 
+# Copying C:/altera/15.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:/altera/15.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -sv -work work +incdir+E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project {E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/VGA_controller.sv}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 14:59:03 on Nov 26,2015
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project" E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/VGA_controller.sv 
+# -- Compiling module vga_controller
+# 
+# Top level modules:
+# 	vga_controller
+# End time: 14:59:04 on Nov 26,2015, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project {E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/Flappy_Bird.sv}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 14:59:04 on Nov 26,2015
+# vlog -reportprogress 300 -sv -work work "+incdir+E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project" E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/Flappy_Bird.sv 
+# -- Compiling module Flappy_Bird
+# ** Error: E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/Flappy_Bird.sv(115): near ")": syntax error, unexpected ')', expecting .* or '.'
+# End time: 14:59:05 on Nov 26,2015, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+# ** Error: C:/altera/15.0/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./Flappy_Bird_run_msim_rtl_verilog.do line 9
+# C:/altera/15.0/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog -sv -work work +incdir+E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project {E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project..."
+vsim work.vga_controller
+# vsim -gui "+altera" -l msim_transcript -do "Flappy_Bird_run_msim_rtl_verilog.do" 
+# Start time: 14:59:12 on Nov 26,2015
+# Loading sv_std.std
+# Loading work.vga_controller
+# End time: 14:59:36 on Nov 26,2015, Elapsed time: 0:00:24
+# Errors: 0, Warnings: 0

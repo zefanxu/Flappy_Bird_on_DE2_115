@@ -1,0 +1,34 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/simulation/modelsim
+vvga_controller
+DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
+!s110 1448571544
+!i10b 1
+!s100 X9;EDW;joJLMfA6>VRaOQ0
+I9Qk;EE0bUOSK@ZSUdm`W^0
+V`JN@9S9cnhjKRR_L]QIcM3
+!s105 VGA_controller_sv_unit
+S1
+R0
+w1448489562
+8E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/VGA_controller.sv
+FE:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/VGA_controller.sv
+L0 25
+OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1448571543.703000
+!s107 E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/VGA_controller.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project|E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/VGA_controller.sv|
+!i113 1
+o-sv -work work
+!s92 -sv -work work +incdir+E:/ECE385Lab/ECE385_Final_Project/working_copy_final_project

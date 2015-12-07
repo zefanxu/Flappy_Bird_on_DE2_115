@@ -1,0 +1,106 @@
+/*
+ * main.c
+ *
+ *  Created on: Nov 26, 2015
+ *      Author: Zefan Xu
+ */
+ #include <stdio.h>
+ #define true 1
+ #define false 0
+
+ volatile unsigned int * birdy = (unsigned int*) 0x20;
+ volatile unsigned int * birdx = (unsigned int*) 0x30;
+ volatile unsigned int * pipe_x = (unsigned int*) 0x40;
+ volatile unsigned int * pipe3 = (unsigned int*) 0x70;
+ volatile unsigned int * pipe2 = (unsigned int*) 0x60;
+ volatile unsigned int * pipe1 = (unsigned int*) 0x50;
+ volatile unsigned int * pipe4 = (unsigned int*) 0x90;
+ volatile unsigned int * pipe5 = (unsigned int*) 0x80;
+ volatile unsigned int * text_on = (unsigned int*) 0xA0;
+ volatile unsigned int * keycode = (unsigned int*) 0xC0;
+ volatile unsigned int * press = (unsigned int*) 0xB0;
+ volatile unsigned int * TextX = (unsigned int*) 0xE0;
+ volatile unsigned int * TextY = (unsigned int*) 0xD0;
+
+
+ static double timeCount, yPosition, pipeXposition;
+ static int y_init, jump, gameover, gamestart;
+
+ int randomHeight(){
+ 	int out = 140 + rand() % 150;
+ 	return out;
+ }
+
+ void initialize_game(){
+ 	y_init = 280;
+ 	*birdx = 0;
+ 	*birdy = y_init;
+ 	timeCount = 0;
+ 	yPosition = y_init;
+
+ 	*pipe_x = 640;
+ 	*pipe1 = randomHeight();
+ 	*pipe2 = randomHeight();
+ 	*pipe3 = randomHeight();
+ 	*pipe4 = randomHeight();
+ 	*pipe5 = randomHeight();
+ 	pipeXposition = *pipe_x;
+
+ 	jump = false;
+	gameover = false;
+	gamestart = false;
+ }
+
+ int main(){
+ 	initialize_game();
+ 	while (1){
+ 		while (!gamestart){
+ 			if (*keycode == 90 && *press) gamestart = true;
+ 			*TextX = 280;
+ 			*TextY = 240;
+ 			*text_on = true;
+ 			if (yPosition < y_init) timeCount = 0;
+ 			timeCount += 0.02;
+ 			yPosition = 0.5 * (-10) * timeCount * timeCount + timeCount * 40 + y_init;
+ 		}
+ 		while (gamestart && !gameover){
+
+ 			*text_on = false;
+
+		//update bird position /////////////////////////////////////////////////////////////////////////
+ 			if (*keycode == 41 && *press) {
+ 				jump = true;
+ 				timeCount = 0;
+ 				y_init = yPosition;
+ 			}
+
+ 				timeCount += 0.02;
+ 				yPosition = 0.5 * (-10) * timeCount * timeCount + timeCount * 40 + y_init;
+
+ 			if (yPosition < 80) {
+ 				yPosition = 80;
+ 				jump = false;
+ 				gameover = true;
+ 			}
+ 			*birdy = 480 - yPosition;
+
+
+		//update pipe x position ///////////////////////////////////////////////////////////////////////
+ 			pipeXposition -= 0.05;
+
+ 			if (pipeXposition <= 100){
+ 				//printf("before swap: %d, %d, %d, %d, %d \n", *pipe5, *pipe2, *pipe1, *pipe3, *pipe4);
+ 				*pipe5 = *pipe3;
+ 				*pipe2 = *pipe1;
+ 				pipeXposition = 640;
+ 				*pipe1 = *pipe4;
+ 				*pipe3 = randomHeight();
+ 				*pipe4 = randomHeight();
+ 				//printf("after swap: %d, %d, %d, %d, %d \n", *pipe5, *pipe2, *pipe1, *pipe3, *pipe4);
+ 			}
+ 			*pipe_x = pipeXposition;
+ 		}
+ 		if (gameover && *keycode == 90 && *press) initialize_game();
+ 	}
+
+ }

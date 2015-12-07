@@ -1,0 +1,61 @@
+/*
+ * main.c
+ *
+ *  Created on: Nov 26, 2015
+ *      Author: Zefan Xu
+ */
+#include <stdio.h>
+
+	volatile unsigned int * birdy = (unsigned int*) 0x20;
+	volatile unsigned int * birdx = (unsigned int*) 0x30;
+	volatile unsigned int * pipe_x = (unsigned int*) 0x40;
+	volatile unsigned int * pipe3 = (unsigned int*) 0x70;
+	volatile unsigned int * pipe2 = (unsigned int*) 0x60;
+	volatile unsigned int * pipe1 = (unsigned int*) 0x50;
+	volatile unsigned int * pipe4 = (unsigned int*) 0x90;
+	volatile unsigned int * pipe5 = (unsigned int*) 0x80;
+
+int randomHeight(){
+	int out = 140 + rand() % 150;
+	return out;
+}
+
+int main(){
+	int y_init = 90;
+	*birdx = 0;
+	*birdy = y_init;
+	double timeCount = 0;
+	double yPosition = y_init;
+
+	*pipe_x = 640;
+	*pipe1 = 140;
+	*pipe2 = 170;
+	*pipe3 = 200;
+	*pipe4 = 230;
+	*pipe5 = 270;
+	double pipeXposition = *pipe_x;
+
+	while (1){
+		//update bird position /////////////////////////////////////////////////////////////////////////
+		timeCount += 0.02;
+		yPosition = 0.5 * (-10) * timeCount * timeCount + timeCount * 87 + y_init;
+		if (yPosition < y_init) timeCount = 0;
+		*birdy = 480 - yPosition;
+
+		//update pipe x position ///////////////////////////////////////////////////////////////////////
+		pipeXposition -= 0.15;
+
+		if (pipeXposition <= 100){
+			printf("before swap: %d, %d, %d, %d \n",*pipe2, *pipe1, *pipe3, *pipe4);
+
+			*pipe5 = *pipe2;
+			*pipe2 = *pipe1;
+			pipeXposition = 640;
+			*pipe1 = *pipe3;
+			*pipe3 = *pipe4;
+			*pipe4 = *pipe5;
+			printf("after swap: %d, %d, %d, %d \n",*pipe2, *pipe1, *pipe3, *pipe4);
+		}
+		*pipe_x = pipeXposition;
+	}
+}

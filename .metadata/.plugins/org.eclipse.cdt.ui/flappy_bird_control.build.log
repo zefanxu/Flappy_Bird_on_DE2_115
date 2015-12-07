@@ -1,0 +1,38 @@
+14:02:07 **** Incremental Build of configuration Nios II for project flappy_bird_control ****
+make all 
+Info: Building ../flappy_bird_control_bsp/
+C:/altera/15.0/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../flappy_bird_control_bsp/
+[BSP build complete]
+Info: Compiling main.c to obj/default/main.o
+nios2-elf-gcc -xc -MP -MMD -c -I../flappy_bird_control_bsp//HAL/inc -I../flappy_bird_control_bsp/ -I../flappy_bird_control_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o obj/default/main.o main.c
+main.c: In function 'randomHeight':
+main.c:58:3: warning: implicit declaration of function 'rand' [-Wimplicit-function-declaration]
+   int out = 120 + rand() % 180;
+   ^
+main.c: In function 'main':
+main.c:216:14: warning: suggest parentheses around '&&' within '||' [-Wparentheses]
+     if (dead && two_players == false || dead && dead2 && two_players){
+              ^
+main.c: At top level:
+main.c:40:13: warning: 'too_high' defined but not used [-Wunused-variable]
+  static int too_high = false;
+             ^
+main.c: In function 'AIPlayer':
+main.c:118:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+main.c: In function 'bird_alive':
+main.c:130:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+Info: Linking flappy_bird_control.elf
+nios2-elf-g++  -T'../flappy_bird_control_bsp//linker.x' -msys-crt0='../flappy_bird_control_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../flappy_bird_control_bsp/   -Wl,-Map=flappy_bird_control.map   -O0 -g -Wall   -mno-hw-div -mno-hw-mul -mno-hw-mulx  -o flappy_bird_control.elf obj/default/main.o -lm -msys-lib=m
+nios2-elf-insert flappy_bird_control.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --id 0 --sidp 0x1b8 --timestamp 1449428733 --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name flappy_bird_control --quartus_project_dir "C:/ECE385Lab/ECE385_Final_Project/working_copy_final_project" --jdi ../..//output_files/Flappy_Bird.jdi --sopcinfo C:/ECE385Lab/ECE385_Final_Project/working_copy_final_project/software/flappy_bird_control_bsp/../../flappy_bird_control.sopcinfo
+Info: (flappy_bird_control.elf) 28 KBytes program size (code + initialized data).
+Info:                           65502 KBytes free for stack + heap.
+Info: Creating flappy_bird_control.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source flappy_bird_control.elf >flappy_bird_control.objdump
+[flappy_bird_control build complete]
+
+14:02:09 Build Finished (took 1s.657ms)
+

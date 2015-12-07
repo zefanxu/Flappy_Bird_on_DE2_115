@@ -1,0 +1,39 @@
+	flappy_bird_control u0 (
+		.bird_x_export_export  (<connected-to-bird_x_export_export>),  //  bird_x_export.export
+		.bird_y_export_export  (<connected-to-bird_y_export_export>),  //  bird_y_export.export
+		.clk_clk               (<connected-to-clk_clk>),               //            clk.clk
+		.first_export_export   (<connected-to-first_export_export>),   //   first_export.export
+		.keycode_export_export (<connected-to-keycode_export_export>), // keycode_export.export
+		.pipe1_export_export   (<connected-to-pipe1_export_export>),   //   pipe1_export.export
+		.pipe2_export_export   (<connected-to-pipe2_export_export>),   //   pipe2_export.export
+		.pipe3_export_export   (<connected-to-pipe3_export_export>),   //   pipe3_export.export
+		.pipe4_export_export   (<connected-to-pipe4_export_export>),   //   pipe4_export.export
+		.pipe5_export_export   (<connected-to-pipe5_export_export>),   //   pipe5_export.export
+		.pipe_x_export_export  (<connected-to-pipe_x_export_export>),  //  pipe_x_export.export
+		.press_export_export   (<connected-to-press_export_export>),   //   press_export.export
+		.reset_reset_n         (<connected-to-reset_reset_n>),         //          reset.reset_n
+		.scorex_export_export  (<connected-to-scorex_export_export>),  //  scorex_export.export
+		.scorey_export_export  (<connected-to-scorey_export_export>),  //  scorey_export.export
+		.sdram_clk_clk         (<connected-to-sdram_clk_clk>),         //      sdram_clk.clk
+		.sdram_wire_addr       (<connected-to-sdram_wire_addr>),       //     sdram_wire.addr
+		.sdram_wire_ba         (<connected-to-sdram_wire_ba>),         //               .ba
+		.sdram_wire_cas_n      (<connected-to-sdram_wire_cas_n>),      //               .cas_n
+		.sdram_wire_cke        (<connected-to-sdram_wire_cke>),        //               .cke
+		.sdram_wire_cs_n       (<connected-to-sdram_wire_cs_n>),       //               .cs_n
+		.sdram_wire_dq         (<connected-to-sdram_wire_dq>),         //               .dq
+		.sdram_wire_dqm        (<connected-to-sdram_wire_dqm>),        //               .dqm
+		.sdram_wire_ras_n      (<connected-to-sdram_wire_ras_n>),      //               .ras_n
+		.sdram_wire_we_n       (<connected-to-sdram_wire_we_n>),       //               .we_n
+		.second_export_export  (<connected-to-second_export_export>),  //  second_export.export
+		.text_on_export        (<connected-to-text_on_export>),        //        text_on.export
+		.textx_export_export   (<connected-to-textx_export_export>),   //   textx_export.export
+		.texty_export_export   (<connected-to-texty_export_export>),   //   texty_export.export
+		.third_export_export   (<connected-to-third_export_export>),   //   third_export.export
+		.scorex2_export_export (<connected-to-scorex2_export_export>), // scorex2_export.export
+		.scorey2_export_export (<connected-to-scorey2_export_export>), // scorey2_export.export
+		.bird_y2_export_export (<connected-to-bird_y2_export_export>), // bird_y2_export.export
+		.first2_export_export  (<connected-to-first2_export_export>),  //  first2_export.export
+		.second2_export_export (<connected-to-second2_export_export>), // second2_export.export
+		.third2_export_export  (<connected-to-third2_export_export>)   //  third2_export.export
+	);
+
